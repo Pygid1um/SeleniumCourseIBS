@@ -9,10 +9,16 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- Encoding -->
+        <my.custom.encoding.type>UTF-8</my.custom.encoding.type>
+        <project.build.sourceEncoding>${my.custom.encoding.type}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${my.custom.encoding.type}</project.reporting.outputEncoding>
+        <file.encoding>${my.custom.encoding.type}</file.encoding>
+
+        <!-- Java version -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -29,5 +35,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

@@ -89,11 +89,16 @@ public class Task01 {
         fieldDepartureCity.clear();
         String departureCity = "Россия, Питер";
         fieldDepartureCity.sendKeys(departureCity);
+        String actualDepartureCity = fieldDepartureCity.getAttribute("value");
+        Assertions.assertEquals(departureCity, actualDepartureCity,"Город выбытия введен не верно!");
 
-        String arrivalCity = "Россия, Сетище";
         WebElement fieldArrivalCity = driver.findElement(By.xpath("//div[@class='controls']" +
                 "/input[@data-name='field__arrival-city']"));
+        String arrivalCity = "Россия, Сетище";
         fieldArrivalCity.sendKeys(arrivalCity);
+        String actualArrivalCity = fieldArrivalCity.getAttribute("value");
+        Assertions.assertEquals(arrivalCity, actualArrivalCity, "Город выбытия введен не верно!");
+
 
 
         //Выбор дат
@@ -104,6 +109,8 @@ public class Task01 {
         wait.until(visibilityOf(driver.findElement(By.xpath("//div[@id='ui-datepicker-div']"))));
         String dayOfDeparture = "2";
         driver.findElement(By.xpath(String.format("//td[@data-handler='selectDay']/a[text()='%s']", dayOfDeparture))).click();
+        String actualDateOfDeparture = fieldDateOfDeparture.getAttribute("value");
+        Assertions.assertEquals(dateOfDeparture, actualDateOfDeparture, "Дата выбытия не совпадает с введенной!");
 
         WebElement fieldDateOfArrival = driver.findElement(By.xpath(
                 "//*[text()='Планируемая дата возвращения']/../following-sibling::div/input"));
@@ -112,6 +119,8 @@ public class Task01 {
         wait.until(visibilityOf(driver.findElement(By.xpath("//div[@id='ui-datepicker-div']"))));
         String dayOfArrival = "12";
         driver.findElement(By.xpath(String.format("//td[@data-handler='selectDay']/a[text()='%s']", dayOfArrival))).click();
+        String actualDateOfArrival = fieldDateOfArrival.getAttribute("value");
+        Assertions.assertEquals(dateOfArrival, actualDateOfArrival, "Дата прибытия не совпадает с введенной!");
 
 
         //Кнопка Сохранить и далее
