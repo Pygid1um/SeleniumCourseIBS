@@ -1,4 +1,4 @@
-package ds.anosov.tests;
+package ds.anosov.tests.Task01;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
