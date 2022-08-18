@@ -2,8 +2,10 @@ package ds.anosov.framework.pages;
 
 import ds.anosov.framework.managers.DriverManager;
 import ds.anosov.framework.managers.PageManager;
-import io.qameta.allure.Attachment;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BasePage {
 
     protected DriverManager driverManager = DriverManager.getDriverManager();
-    protected JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driverManager.getDriver();
+    protected JavascriptExecutor javaScriptExecutor = (JavascriptExecutor) driverManager.getDriver();
     protected PageManager pageManager = PageManager.getPageManager();
     protected WebDriverWait wait = new WebDriverWait(driverManager.getDriver(), Duration.ofSeconds(10), Duration.ofSeconds(1));
 
@@ -49,13 +51,4 @@ public class BasePage {
         element.sendKeys(Keys.ESCAPE);
     }
 
-    protected WebElement scrollToElementJs(WebElement element) {
-        javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
-        return element;
-    }
-
-    @Attachment(value = "Скриншот ошибки", type = "image/png", fileExtension = "png")
-    public byte[] attachScreenshot() {
-        return ((TakesScreenshot) DriverManager.getDriverManager().getDriver()).getScreenshotAs(OutputType.BYTES);
-    }
 }
