@@ -2,11 +2,13 @@ package ds.anosov.tests.Task02;
 
 
 import ds.anosov.tests.Task02.basetestsclass.BaseTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class Task02 extends BaseTest {
 
     @Test
+    @DisplayName("Создание заявки Командировки")
     public void createOpty() {
         app.getLoginPage()
                 .enterLoginAndPassword("Irina Filippova", "testing")

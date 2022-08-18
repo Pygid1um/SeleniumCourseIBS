@@ -1,5 +1,6 @@
 package ds.anosov.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,7 +52,7 @@ public class CreateBusinessTripsPage extends BasePage {
     @FindBy(xpath = "//span[@class='validation-failed']")
     private WebElement errorMessageAlert;
 
-
+    @Step("Проверка заголовка на странице создания командировок")
     public CreateBusinessTripsPage checkCreateBusinessTripsTitle() {
         wait.until(visibilityOf(createBusinessTripsTitle));
         Assertions.assertEquals("Создать командировку", createBusinessTripsTitle.getText(),
@@ -59,6 +60,7 @@ public class CreateBusinessTripsPage extends BasePage {
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Выбор подразделения")
     public CreateBusinessTripsPage clickSubdivision() {
         fieldSubdivision.click();
         subdivision.click();
@@ -68,12 +70,14 @@ public class CreateBusinessTripsPage extends BasePage {
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Открытие списка организаций")
     public CreateBusinessTripsPage clickOrganizationsButtons() {
         organizationsButton.click();
         listOfOrganizationsButton.click();
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Выбор организации из списка")
     public CreateBusinessTripsPage selectOrganization(String nameOfOrganization) {
         wait.until(visibilityOf(dropDownMenuOrganization));
         for (WebElement itemMenu : listOrganizations) {
@@ -86,6 +90,7 @@ public class CreateBusinessTripsPage extends BasePage {
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Выбор чекбокса 'Задачи'")
     public CreateBusinessTripsPage setCheckBox(String nameOfCheckBox) {
         for (WebElement checkBox : listCheckbox) {
             if (checkBox.getText().contains(nameOfCheckBox)) {
@@ -97,6 +102,7 @@ public class CreateBusinessTripsPage extends BasePage {
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Заполнение полей 'Города' и 'Даты'")
     public CreateBusinessTripsPage fillField(String nameField, String value) {
         WebElement element = null;
         switch (nameField) {
@@ -125,14 +131,18 @@ public class CreateBusinessTripsPage extends BasePage {
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Нажатие на кнопку 'Сохранить и закрыть'")
     public CreateBusinessTripsPage clickSaveAndClose() {
         saveAndCloseButton.click();
         return pageManager.getCreateBusinessTripsPage();
     }
 
+    @Step("Проверка появившейся ошибки")
     public CreateBusinessTripsPage checkErrorMessageAlert(String errMessage) {
+        scrollToElementJs(errorMessageAlert);
         Assertions.assertEquals(errMessage, errorMessageAlert.getText(), "Проверка ошибки у alert на странице " +
                 "'Создать командировку' было не пройдено" );
+        attachScreenshot();
         return pageManager.getCreateBusinessTripsPage();
     }
 

@@ -1,5 +1,6 @@
 package ds.anosov.framework.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -22,7 +23,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     private WebElement subtitle;
 
-
+    @Step("Ввод логина и пароля")
     public LoginPage enterLoginAndPassword(String login, String password) {
         wait.until(visibilityOf(loginFormWindow));
         fillInputField(loginField, login);
@@ -30,6 +31,7 @@ public class LoginPage extends BasePage {
         return pageManager.getLoginPage();
     }
 
+    @Step("Вход в приложение")
     public MainMenuPage submitEnterButtonClick() {
         singInButton.click();
         wait.until(visibilityOf(subtitle));
